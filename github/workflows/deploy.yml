@@ -42,7 +42,7 @@ jobs:
         sed -i "s/database_name_here/wordpress_test/" wp-config.php
         sed -i "s/username_here/root/" wp-config.php
         sed -i "s/password_here/root/" wp-config.php
-        sed -i "s/localhost/127.0.0.1:3306/" wp-config.php
+        sed -i "s/localhost/127.0.0.1:3307/" wp-config.php
         echo "define('WP_DEBUG', true);" >> wp-config.php
         echo "define('WP_DEBUG_LOG', true);" >> wp-config.php
 
@@ -52,13 +52,10 @@ jobs:
         chmod +x wp-cli.phar
         sudo mv wp-cli.phar /usr/local/bin/wp
 
-    - name: Install WordPress Plugin
-      run: wp plugin install simply-static --activate
-
     - name: Install WordPress
       run: |
         wp core install --url="http://localhost" --title="Test Site" --admin_user="admin" --admin_password="password" --admin_email="admin@example.com"
-        
+        wp plugin install simply-static --activate
 
     - name: Generate Static Site
       run: |
