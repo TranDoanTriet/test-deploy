@@ -1,12 +1,12 @@
-name: WordPress CI/CD
+name: Deploy WordPress Static Site to GitHub Pages
 
 on:
   push:
     branches:
-      - gh-page
+      - main  # Thay đổi branch của bạn tại đây nếu cần
   pull_request:
     branches:
-      - gh-page
+      - main  # Thay đổi branch của bạn tại đây nếu cần
 
 jobs:
   build:
@@ -42,3 +42,23 @@ jobs:
         sed -i "s/password_here/root/" wp-config.php
         echo "define('WP_DEBUG', true);" >> wp-config.php
         echo "define('WP_DEBUG_LOG', true);" >> wp-config.php
+
+    - name: Install WP-CLI
+      run: |
+        curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+        chmod +x wp-cli.phar
+        sudo mv wp-cli.phar /usr/local/bin/wp
+
+    - name: Install and Activate Simply Static Plugin
+      run: |
+        wp plugin install simply-static --activate
+
+    - name: Generate Static Site
+      run: |
+        wp simply-static generate
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./wp-content/uploads/simply-static
