@@ -27664,3 +27664,7 @@
 [2024-06-17 05:35:46] [class-ss-archive-creation-job.php:170] This task is done and there are no more tasks, time to complete the job
 [2024-06-17 05:35:46] [class-ss-archive-creation-job.php:197] Completing the job
 [2024-06-17 05:35:46] [class-ss-archive-creation-job.php:324] Status message: [done] Done! Finished in 00:01:21
+[2024-06-17 06:37:39] [class-ss-url-fetcher.php:251] Fetching URL: http://localhost/test-deploy
+[2024-06-17 06:37:40] [class-ss-url-fetcher.php:251] Fetching URL: http://localhost/test-deploy
+[2024-06-17 07:33:38] [class-ss-url-fetcher.php:251] Fetching URL: http://localhost/test-deploy
+[2024-06-17 07:33:39] [class-ss-url-fetcher.php:251] Fetching URL: http://localhost/test-deploy
