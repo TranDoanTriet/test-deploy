@@ -52,10 +52,13 @@ jobs:
         chmod +x wp-cli.phar
         sudo mv wp-cli.phar /usr/local/bin/wp
 
+    - name: Install WordPress Plugin
+      run: wp plugin install simply-static --activate
+
     - name: Install WordPress
       run: |
         wp core install --url="http://localhost" --title="Test Site" --admin_user="admin" --admin_password="password" --admin_email="admin@example.com"
-        wp plugin install simply-static --activate
+        
 
     - name: Generate Static Site
       run: |
