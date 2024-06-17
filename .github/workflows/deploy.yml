@@ -18,17 +18,14 @@ jobs:
           php-version: '7.4'
           extensions: mbstring, zip, curl, openssl
           
-      - name: Install Composer
-        run: |
-          php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-          php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-          php -r "unlink('composer-setup.php');"
-        
-      - name: Install Simply Static
-        run: composer require wpsimplestatic/wpsimplestatic-cli
-        
+      - name: Install Simply Static CLI
+        run: curl -sLO https://github.com/simply-static/simply-static/releases/latest/download/simply-static.phar
+      
+      - name: Make Simply Static executable
+        run: chmod +x simply-static.phar
+      
       - name: Generate static site
-        run: vendor/bin/wpsimplestatic export
+        run: ./simply-static.phar export --url="http://your-wordpress-site-url"
         
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
