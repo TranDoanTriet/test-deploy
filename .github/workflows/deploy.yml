@@ -3,10 +3,10 @@ name: Deploy WordPress Static Site to GitHub Pages
 on:
   push:
     branches:
-      - main  # Thay đổi branch của bạn tại đây nếu cần
+      - gh-page  # Thay đổi branch của bạn tại đây nếu cần
   pull_request:
     branches:
-      - main  # Thay đổi branch của bạn tại đây nếu cần
+      - gh-page  # Thay đổi branch của bạn tại đây nếu cần
 
 jobs:
   build:
