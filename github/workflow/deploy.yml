@@ -3,10 +3,10 @@ name: WordPress CI/CD
 on:
   push:
     branches:
-      - main
+      - gh-page
   pull_request:
     branches:
-      - main
+      - gh-page
 
 jobs:
   build:
